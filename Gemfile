@@ -70,3 +70,6 @@ gem 'devise'
 #レイアウト調整
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+
+#画像アップロードに使用
+gem 'carrierwave'
