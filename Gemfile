@@ -66,3 +66,7 @@ gem 'activeadmin'
 gem "active_material", github: "vigetlabs/active_material"
 #ユーザー認証機能
 gem 'devise'
+
+#レイアウト調整
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
