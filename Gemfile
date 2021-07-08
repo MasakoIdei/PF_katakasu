@@ -63,6 +63,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #管理者機能、レイアウト
 gem 'activeadmin'
-
+gem "active_material", github: "vigetlabs/active_material"
 #ユーザー認証機能
 gem 'devise'
