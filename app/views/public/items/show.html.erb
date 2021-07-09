@@ -24,8 +24,10 @@
                 <p>用意することが出来ません。</p>
               </div>
             <% else %>
-              <%= form_for [@item] do |f| %>
+                <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
     						<p>数量を選択して下さい。</p>
+    						<!--submitを押した時、個数と同時に商品IDも一緒に送信する-->
+    						<%= f.hidden_field :id, :value => @item.id%>
     						<%= f.select :quantity, [*(1..10)], {selected: 1} %>
     						<%= f.submit "カートに入れる", class: "btn btn-primary" %>
     					<% end %>
