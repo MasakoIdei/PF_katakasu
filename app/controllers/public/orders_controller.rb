@@ -12,7 +12,7 @@ class Public::OrdersController < ApplicationController
   def create
   end
 
-　#ご注文ありがとう！
+  #ご注文ありがとう！
   def thanks
   end
 
