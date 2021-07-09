@@ -2,7 +2,8 @@ class Public::ItemsController < ApplicationController
 
   #商品一覧の表示
   def index
-    @items = Item.all
+    # @items = Item.all
+    @items = Item.all.page(params[:page]).per(8)
   end
 
   #商品詳細表示
