@@ -13,4 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+// bootstrapの読み込み
 @import "bootstrap";
+
+// ページタイトルの位置調整
+.page_title {
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+// 背景カラーの指定
+body {
+  background-color: #E4FDFC;
+}
