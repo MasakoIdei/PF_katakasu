@@ -1,0 +1,22 @@
+// Place all the styles related to the public::items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.img_wrap{
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.img_wrap img{
+  width: 100%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.img_wrap:hover img{
+  opacity: 0.6;
+  transition-duration: 0.3s;
+}
+.out_stock {
+  padding: 15px;
+  border:3px solid; border-color:#ff0000;
+  border-radius: 10px;
+}

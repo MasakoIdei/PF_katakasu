@@ -1,0 +1,34 @@
+<div class= "container">
+  <h2 class= "page_title">商品一覧</h2>
+
+  <div class = "row">
+    <div class="card-deck">
+
+    <!--繰り返し表示----------------------------------------------------------------------------->
+      <% @items.each do |i|%>
+            <div class="col-lg-3 .col-sm-6 my-2">
+                <div class="card h-100">
+
+                 <!--画像、商品名/商品詳細リンク-->
+                  <%= link_to item_path(i) do %>
+                  <div class="img_wrap"><%= image_tag i.image.to_s,:size =>'220X180' %></div>
+                  <h5 class="card-title"><%= i.item_name %></h5>
+                  <% end %>
+
+                  <!--その他項目-->
+                  <div class="card-body">
+                    <p>サイズ：<%= i.item_sieze %></p>
+                    <p class="card-text">7日間 <%= i.item_price %>円～</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">残り<%= i.item_stock %>セット</small>
+                  </div>
+                </div>
+            </div>
+      <% end %>
+     <!-------------------------------------------------------------------------------------->
+
+    </div><!--card-deck-->
+  </div><!--row-->
+  <%= paginate @items %>
+</div><!--conteiner-->

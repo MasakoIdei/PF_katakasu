@@ -1,0 +1,29 @@
+// Place all the styles related to the public::homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+  }
+
+.content {
+  width: 100%;
+}
+.mv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 650px;
+  background: image-url("mv.jpg") center/cover;
+  background-position: center;
+  p {
+    color: #FFF;
+    width: 50%;
+    padding: 30px;
+    font-size: 15px;
+    text-align: center;
+    background-color: rgba(91,155,213,0.8);
+    box-shadow: inset 0 0 15px 15px
+  }
+}
