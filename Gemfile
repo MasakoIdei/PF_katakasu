@@ -76,3 +76,9 @@ gem 'carrierwave'
 
 #ページング機能の追加
 gem 'kaminari','~> 1.2.1'
+
+#デプロイの際の機密情報の格納に使用
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
