@@ -19,6 +19,7 @@ class Public::OrdersController < ApplicationController
   # 注文履歴注文履歴表示
   def index
   end
+
   # 注文履歴詳細
   def show
   end
