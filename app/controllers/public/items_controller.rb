@@ -8,6 +8,7 @@ class Public::ItemsController < ApplicationController
   #商品詳細表示
   def show
     @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
 
 end
