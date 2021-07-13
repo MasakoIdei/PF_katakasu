@@ -6,35 +6,67 @@
         <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-outline-danger" %>
     </div>
 
-
-  　<table class="table  table-light table-bordered ">
-  　 <thead>
-    　   <tr>
-      　   <th>商品名</th>
-      　   <th>単価</th>
-      　   <th>貸出数量</th>
-      　   <th>小計</th>
-      　   <th>&nbsp;</th>
-    　   </tr>
-    　 <% @cart_items.each do |cart_item| %>
-      　 <tr>
-      　 <td>
-      　      <%= image_tag (cart_item.item.image.to_s), size: '80x80' %>
-      　      <%= cart_item.item.item_name %>
-      　 </td>
-      　 <td><%= cart_item.item.item_price %>円/週</td>
-      　 <td>
-          　  <%= form_with(model: @cart_item, url: cart_item_path(cart_item), method: :PATCH, local: true) do |f| %>
-          　  <%= f.select :quantity, [*(1..10)], {selected: 1} %>
-          　  <%= f.submit "変更", class: "btn btn-primary" %>
-          　  <% end %>
-      　  </td>
-      　 <td><%= link_to "削除", cart_item_path(cart_item), method: :delete, class: " btn btn-outline-danger" %></td>
-
-      　 </tr>
-       <% end %>
-  　 </thead>
+  <% if @cart_items.present? %>
+<!--カート内商品の表示------------------------------------------------------------------------------------------------------->
+  　<table class="table  table-light table-bordered col-12">
+      　  <thead>
+        　   <tr>
+          　   <th>商品名</th>
+          　   <th>単価</th>
+          　   <th>貸出数量</th>
+          　   <th>小計</th>
+          　   <th>&nbsp;</th>
+        　   </tr>
+         </thead>
+         <tbody>
+        　<% @cart_items.each do |cart_item| %>
+          　<tr>
+            　 <td>
+            　      <%= image_tag (cart_item.item.image.to_s), size: '80x80' %>
+            　      <%= cart_item.item.item_name %>
+            　 </td>
+            　 <td><%= cart_item.item.item_price %>円/週</td>
+            　 <td>
+                　 <%= form_with(model: cart_item, url: cart_item_path(cart_item.id), local: true) do |f| %>
+                　  <%= f.select :quantity, [*(1..10)] %>
+                　  <%= f.submit "変更", class: "btn btn-primary" %>
+                　  <% end %>
+            　  </td>
+            　 <td><%= cart_item.item_subtotal %>円</td>
+            　 <td><%= link_to "削除", cart_item_path(cart_item), method: :delete, class: " btn btn-outline-danger" %></td>
+            </tr>
+          <% end %>
+      　 </tbody>
   　</table>
 
+<!--商品合計欄の表示--------------------------------------------------------------------------------------------------------->
+    <div class = "row">
+      　<table class= "table  table-light table-bordered ">
+        　 <thead class="col-3">
+        　   <tr>
+        　     <td>貸出個数合計</td>
+        　     <td>商品金額合計</td>
+        　   </tr>
+        　 </thead>
+        　 <tbody>
+        　   <tr>
+        　     <!--商品個数合計--->
+        　     <td><%= @cart_items.sum(&:quantity) %>セット</td>
+        　     <!--商品金額合計-->
+        　     <td><%= @cart_items.sum(&:item_subtotal) %>円</td>
+        　   </tr>
+        　 </tbody>
+      　</table>
+
+      　<div class ="col-6">
+        　  <p>
+        　    ※商品合計金額には、送料とレンタル期間の金額は含まれていません。<br>
+        　      最終的な注文合計金額は変化するのでご注意ください。
+        　  </p>
+      　</div>
+    </div>
+  <% else %>
+     <h3>現在このカートは空です。</h3>
+  <% end %>
 
 </div><!--conteiner-->
