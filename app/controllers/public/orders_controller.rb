@@ -41,7 +41,7 @@ class Public::OrdersController < ApplicationController
 
   end
 
-  #ご注文ありがとう！
+  #ご注文ありがとう
   def thanks
   end
 
