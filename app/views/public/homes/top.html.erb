@@ -9,6 +9,10 @@
     お気に入りの型との出会いを楽しんでください！<br>
     <br>
     尚、商品をレンタルされる場合は<br>
+  <% if customer_signed_in? %>
+    新規登録または、ログインの必要がございます。
+  <% else %>
     <%=link_to "新規登録",new_customer_registration_path %>または、<%=link_to "ログイン", new_customer_session_path%>の必要がございます。
+  <% end %>
   </p>
 </div>
