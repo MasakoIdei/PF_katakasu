@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
 
-  # 支払い、期間選択
+
   def new
     @order = Order.new
   end
@@ -8,21 +8,16 @@ class Public::OrdersController < ApplicationController
 
   def comfirm
     @cart_items = current_customer.cart_items
-    @order = Order.new(order_params)
-    @customer = current_customer# 会員住所を表示するため
-
+    @order = Order.new(order_params)                #期間と支払い選択があるため、order_params
+    @customer = current_customer                    # 会員住所を表示するため
   end
 
 
   def create
-     #注文したユーザーのID,支払い時の選択情報、請求金額の合計
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = Order.new(order_params)               #新規でorderに登録する情報（order_paramsで受け取った値）
+    @order.customer_id = current_customer.id       #Order内に会員IDも登録したいため、定義
 
-
-    #注文履歴作成、#is_rentalにtrueと情報を保存する
-    # order_datailsの中に、商品ID、orderID、商品個数、その時の価格、
-    current_customer.cart_items.each do |cart_item|
+    current_customer.cart_items.each do |cart_item|#Orderdatalisのどのカラムに情報を入れたいのかを指定。is_rentalは、注文と同時にtrueを挿入
       @order.order_datails.build(
         item_id: cart_item.item_id,
         quantity: cart_item.quantity,
@@ -31,22 +26,17 @@ class Public::OrdersController < ApplicationController
         )
     end
 
-
-    if @order .save
-          #在庫から注文した分の個数を引き、在庫数に反映させる
-    #  itemテーブルにある、item_stockの個数を変更し、保存する
-    current_customer.cart_items.each do |cart_item|
-      item = Item.find(cart_item.item_id)
-      item_stock = item.item_stock - cart_item.quantity
-      item.update!(item_stock: item_stock)
+    if @order .save                                    #orderの保存が上手く行った場合
+    current_customer.cart_items.each do |cart_item|    #カートアイテムの情報を分割
+      item = Item.find(cart_item.item_id)              #注文個数の情報を探してくる
+      item_stock = item.item_stock - cart_item.quantity#在庫-注文個数
+      item.update!(item_stock: item_stock)             #在庫数を更新
     end
 
-    #カートを空にする
-    # 登録が成功した場合は、カート内の情報をすべて削除→注文完了画面を呼び出す
-    current_customer.cart_items.destroy_all
-      redirect_to order_thanks_path
+    current_customer.cart_items.destroy_all            #カートを空にする(情報の全削除)
+      redirect_to order_thanks_path                    # 登録が成功した場合は、カート内の情報をすべて削除→注文完了画面を呼び出す
     else
-      render "new"
+      render "new"                                     #失敗した場合は、支払い選択画面に飛ぶ
     end
 
   end
@@ -62,10 +52,6 @@ class Public::OrdersController < ApplicationController
   # 注文履歴詳細
   def show
   end
-
-
-
-
 
 private
 
