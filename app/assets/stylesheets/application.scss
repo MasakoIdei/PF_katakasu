@@ -17,6 +17,13 @@
 // bootstrapの読み込み
 @import "bootstrap";
 
+// ヘッダーあいさつ
+.welcome {
+  color: #FFF;
+  padding: 0.5em;
+  margin-right: 30px;
+}
+
 // ページタイトルの位置調整
 .page_title {
   width: 250px;
@@ -24,6 +31,8 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+
 // 背景カラーの指定
 body {
   background-color: #E4FDFC;
