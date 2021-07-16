@@ -27,8 +27,13 @@
           </tr>
         </tbody>
       </table>
-      <div class="form_btn my-3 offset-md-2">
-        <div class="form mx-auto" style="width: 70%;"><%= f.submit "編集内容を保存", class: "btn btn-success w-75" %></div>
-      </div>
+      <div class="my-3 offset-md-2 d-flex justify-content-around">
+        <%= f.submit "編集内容を保存" %>
+        <% if customer_signed_in? && @customer.id == current_customer.id  %>
+          <%= link_to "退会する",customers_withdrawal_path(current_customer.id), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+       <% end %>
+　　　</div>
     <% end %>
+
+
 </div><!--conteiner-->

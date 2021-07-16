@@ -19,12 +19,20 @@ class Public::CustomersController < ApplicationController
     else
       render "edit"
     end
+  end
 
+  #退会機能（論理削除）
+  def withdrawal
+    @customer = Customer.find(params[:id])
+    @customer.update(is_active: false)
+    reset_session　#削除後はログアウトしてTOP画面へ
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   private
    def customer_params
-      params.require(:customer).permit(:name, :email, :postal_code, :address, :telephone_number)
+      params.require(:customer).permit(:name, :email, :postal_code, :address, :telephone_number, :is_active)
    end
 
 end
