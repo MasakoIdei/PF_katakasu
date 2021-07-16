@@ -1,3 +1,39 @@
 <div class= "container">
     <h2 class= "page_title">マイページ編集</h2>
+
+  <div class="mt-5" style="width:100%;">
+    <%= form_with model:@customer,local:true do |f| %>
+      <table class="form mx-auto" style="width: 70%;" >
+        <tbody>
+          <tr class="form-group row">
+            <td class="col-md-2"><%= f.label :name,"氏名" %></td>
+            <td class="col-md-8"><%= f.text_field :name, class: "form-control" %></td>
+          </tr>
+          <tr class="form-group row">
+            <td class="col-md-2"><%= f.label :email,"メールアドレス" %></td>
+            <td class="col-md-8"><%= f.email_field :email, class: "form-control" %></td>
+          </tr>
+          <tr class="form-group row">
+            <td class="col-md-2"><%= f.label :telephone_number,"電話番号" %></td>
+            <td class="col-md-8"><%= f.telephone_field :telephone_number, class: "form-control" %></td>
+          </tr>
+          <tr class="form-group row">
+            <td class="col-md-2"><%=f.label :postal_code,"郵便番号" %></td>
+            <td class="col-md-8"><%= f.text_field :postal_code, class: "form-control" %></td>
+          </tr>
+          <tr class="form-group row">
+            <td class="col-md-2"><%= f.label :address,"住所" %></td>
+            <td class="col-md-8"><%= f.text_area :address, class: "form-control" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="my-3 offset-md-2 d-flex justify-content-around">
+        <%= f.submit "編集内容を保存" %>
+        <% if customer_signed_in? && @customer.id == current_customer.id  %>
+          <%= link_to "退会する",customers_withdrawal_path(current_customer.id), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+       <% end %>
+　　　</div>
+    <% end %>
+
+
 </div><!--conteiner-->

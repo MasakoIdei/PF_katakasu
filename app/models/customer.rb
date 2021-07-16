@@ -7,4 +7,9 @@ class Customer < ApplicationRecord
   #カートアソシエーション
    has_many :cart_items, dependent: :destroy
 
+  #退会済みの場合は、ログインできない
+  def active_for_authentication?
+    super && self.is_active == true
+  end
+
 end

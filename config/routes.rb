@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     root :to => "homes#top"
     resources :items, only: [:index, :show]
     resources :customers,only: [:edit,:update]
-    get 'customers/:id' => 'customers#show', as: 'my_page'
+    get 'customers/:id/my_page' => 'customers#show', as: 'my_page'
+    put 'customers/:id/withdrawal' =>  'customers#withdrawal', as: 'customers_withdrawal'
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'order/comfirm' => 'orders#comfirm'
