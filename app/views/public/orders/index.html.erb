@@ -1,3 +1,41 @@
 <div class= "container">
     <h2 class= "page_title">注文履歴一覧</h2>
+
+  <table class="table table-border">
+    <thead>
+      <tr>
+        <th>注文日</th>
+        <th>注文商品</th>
+        <th>貸出数合計</th>
+        <th>レンタル期間</th>
+        <th>返却状況</th>
+        <th>商品詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order|%>
+      <tr>
+        <td><%= order.created_at.strftime("%Y/%m/%d")  %></td>
+        <td>
+          <% order.items.each do |item| %>
+           <%=  item.item_name %><br>
+          <% end %>
+        </td>
+        <td align="center"><%= order.items.sum(:quantity) %>セット</td>
+        <td><%= order.time_select %>週間</td>
+        <td>
+          <!--order.order_datails.all?{|order_datail|order_datail.is_rental}-->
+        　<!--all？で複数のカラムの中身がtrueかを判定-->
+          <% if order.order_datails.all?(&:is_rental) %>
+           <%= link_to "商品を返却する",item_return_path(order), method: :put, "data-confirm" => "商品の返却をしますか？", class: "btn btn-outline-danger"%>
+          <% else %>
+          こちらの商品は返却済みです
+          <% end %>
+        </td>
+        <td><%= link_to "詳細",order_path(order), class: "btn btn-outline-info" %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <%= paginate @orders %>
 </div><!--conteiner-->
