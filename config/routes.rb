@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'order/comfirm' => 'orders#comfirm'
     get 'order/thanks' => 'orders#thanks'
+    put 'order/:id/item_return' => 'orders#item_return', as: 'item_return'
     resources :orders, only: [:new, :create, :index, :show ]
   end
 

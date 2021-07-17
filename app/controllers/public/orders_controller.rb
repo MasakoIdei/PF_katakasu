@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-
+ before_action :authenticate_customer!
 
   def new
     @order = Order.new
@@ -47,11 +47,24 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴注文履歴表示
   def index
+  #欲しいのはログイン中のユーザーの注文履歴
+  #ログイン中のユーザーのorderテーブルに入ってる情報をすべて取得
+  #対応するorder_idを持ってる、order_datelisのテーブルの情報を引っ張ってくる
+   @customer = current_customer
+   @orders = @customer.orders.includes(:order_datails, :items).page(params[:page]).per(12).reverse_order
+  end
+
+  def item_return
+    @order = Order.find(params[:id])
+    @order.order_datails.update_all(is_rental: false)
+    flash[:notice] = "ご利用ありがとうございました。"
+    redirect_back(fallback_location: root_path)
   end
 
   # 注文履歴詳細
   def show
   end
+
 
 private
 

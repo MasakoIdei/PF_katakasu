@@ -4,8 +4,9 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #カートアソシエーション
+  #アソシエーション
    has_many :cart_items, dependent: :destroy
+   has_many :orders
 
   #退会済みの場合は、ログインできない
   def active_for_authentication?
