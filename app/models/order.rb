@@ -8,5 +8,10 @@ class Order < ApplicationRecord
 
   enum pay_method:{クレジット: 0, 銀行振込: 1}
 
+  #商品小計
+    def item_subtotal
+      (item.item_price * quantity)*1.1.round
+    end
+
 
 end

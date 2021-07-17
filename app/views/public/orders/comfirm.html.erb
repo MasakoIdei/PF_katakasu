@@ -4,51 +4,49 @@
 
   <div class="mx-auto" style="width: 70%;">
     <!---注文商品内容の表示-------------------------------------------->
-　　<div>
-      <table class="table  table-light">
-      　  <thead>
-        　   <tr>
-          　   <th>商品内容</th>
-          　   <th>&nbsp;</th>
-        　   </tr>
-         </thead>
-         <tbody>
-        　<% @cart_items.each do |cart_item| %>
-          　<tr>
-            　 <td>
-            　      <%= image_tag (cart_item.item.image.to_s), size: '80x80' %>
-            　      <%= cart_item.item.item_name %>
-            　 </td>
-            　 <td><%= cart_item.item.item_price %>円/週  X  <%= cart_item.quantity %>セット</td>
-            　<% end %>
-            </tr>
-            <tr style="border-top: 2px solid #CCC;">
-              <th>商品合計金額</th>
-              <td><%= @cart_items.sum(&:item_subtotal) %>円</td>
-            </tr>
-      　 </tbody>
-  　   </table>
-    </div>
-
-    <!---支払い選択/期間選択の表示-------------------------------------------->
-    <div>
-      <table class="table  table-light  h-50">
+    <table class="table  table-light">
         <thead>
-            <tr>
-              <th>レンタル期間</th>
-              <th>支払い方法</th>
-              <th>送料</th>
-            </tr>
+          <tr>
+            <th>商品内容</th>
+            <th>&nbsp;</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-              <td><%= @order.time_select %>週間</td>
-              <td><%= @order.pay_method %></td>
-              <td>一律　500円</td>
-            </tr>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= image_tag (cart_item.item.image.to_s), size: '80x80' %>
+              <%= cart_item.item.item_name %>
+            </td>
+            <td>
+              <%= cart_item.item.item_price %>円/週  X  <%= cart_item.quantity %>セット
+            </td>
+          <% end %>
+          </tr>
+          <tr style="border-top: 2px solid #CCC;">
+            <th>商品合計金額</th>
+            <td><%= @cart_items.sum(&:item_subtotal) %>円</td>
+          </tr>
         </tbody>
+  　  </table>
+
+    <!---支払い選択/期間選択の表示-------------------------------------------->
+     <table class="table  table-light  h-50">
+         <thead>
+           <tr>
+             <th>レンタル期間</th>
+             <th>支払い方法</th>
+             <th>送料</th>
+           </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><%= @order.time_select %>週間</td>
+                <td><%= @order.pay_method %></td>
+                <td>一律　500円</td>
+              </tr>
+          </tbody>
       </table>
-    <div>
 
     <!---請求金額合計-------------------------------------------->
 
@@ -70,17 +68,14 @@
 
   </div>
 
-    <div class="my-3 mx-auto" style="width: 200px;">
+  <div class="my-3 mx-auto" style="width: 200px;">
     <%= form_with(model: @order, url: orders_path, local: true) do |f| %>
       	<%= f.hidden_field :time_select, :value => @order.time_select %>
       	<%= f.hidden_field :pay_method, :value => @order.pay_method %>
       	<%= f.hidden_field :total_price, :value => @total_price %>
-
-
-      <%= f.submit "注文を確定する", class: "btn btn-outline-secondary" %>
+      	<%= f.submit "注文を確定する", class: "btn btn-outline-secondary" %>
     <% end %>
-   </div>
-
+  </div>
 
 
 </div><!--conteiner-->
