@@ -1,23 +1,17 @@
 ActiveAdmin.register Item do
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :item_name, :image, :item_sieze, :introduction, :item_price, :item_stock
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:item_name, :image, :item_sieze, :introduction, :item_price, :item_stock]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
   permit_params :item_name, :image, :item_sieze, :introduction, :item_price, :item_stock
   config.per_page = 5 # 一覧ページのページングの件数
+  menu label: "商品"
 
 
+ #検索フィルターの検索項目
+  filter :id
+  filter :item_name
+  filter :item_stock
+  filter :created_at
+
+ #商品一覧画面の表示内容
   index do
     selectable_column
     id_column
@@ -32,10 +26,8 @@ ActiveAdmin.register Item do
     actions
   end
 
-
-
-
-  form(:html => { :multipart => true }) do |f|
+ #商品編集の編集欄
+  form do |f|
       f.inputs "Item" do
         f.input :item_name
         f.input :image
@@ -47,6 +39,7 @@ ActiveAdmin.register Item do
       f.actions
   end
 
+#商品詳細で表示する内容
  show do |i|
     attributes_table do
       row :id
