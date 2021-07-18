@@ -35,7 +35,7 @@ ActiveAdmin.register Customer do
   end
 
   #会員詳細で表示する内容
- show do |i|
+ show title: :name do
     attributes_table do
       row :id
       row :name

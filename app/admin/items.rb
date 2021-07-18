@@ -6,10 +6,10 @@ ActiveAdmin.register Item do
 
 
  #検索フィルターの検索項目
-  filter :id
-  filter :item_name
-  filter :item_stock
-  filter :created_at
+  filter :id, label: '商品ID'
+  filter :item_name, label: '商品名'
+  filter :item_stock, label: '商品在庫'
+  filter :created_at, label: '登録日'
 
  #商品一覧画面の表示内容
   index do
@@ -40,7 +40,7 @@ ActiveAdmin.register Item do
   end
 
 #商品詳細で表示する内容
- show do |i|
+ show title: :item_name do |i|
     attributes_table do
       row :id
       row :item_name
