@@ -5,18 +5,18 @@ ActiveAdmin.register Customer do
   config.per_page = 10
   # actionボタンに新規作成と削除を表示しないように設定
   actions :all, except: [:new, :create, :destroy]
-   menu label: "会員"
+   menu label: "会員一覧"
 
   # 会員一覧画面
-  index do
+  index :title => "会員一覧" do
     selectable_column
     id_column
-    column :name
-    column :email
-    column :telephone_number
-    column :is_active
-    column :created_at
-    column :updated_at
+    column "会員氏名", :name
+    column "メールアドレス", :email
+    column "電話番号", :telephone_number
+    column "会員登録", :is_active
+    column "登録日", :created_at
+    column "情報更新日", :updated_at
 
     actions
   end

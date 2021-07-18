@@ -1,58 +1,77 @@
 ActiveAdmin.register Item do
 
+  menu label: "商品一覧"#タブ名の変更
+  config.per_page = 5 # 一覧ページの表示件数
   permit_params :item_name, :image, :item_sieze, :introduction, :item_price, :item_stock
-  config.per_page = 5 # 一覧ページのページングの件数
-  menu label: "商品"
 
 
- #検索フィルターの検索項目
+#検索フィルターの検索項目
   filter :id, label: '商品ID'
   filter :item_name, label: '商品名'
   filter :item_stock, label: '商品在庫'
   filter :created_at, label: '登録日'
 
+
  #商品一覧画面の表示内容
-  index do
+  index :title => "商品一覧" do
     selectable_column
     id_column
-    column :image do |i|
+    column "商品画像" do |i|
       image_tag(i.image.url, height: 10)
     end
-    column :item_name
-    column :item_sieze
-    column :item_stock
-    column :created_at
+    column "商品名", :item_name
+    column "サイズ", :item_sieze
+    column "在庫数", :item_stock
+    column "商品登録日", :created_at
 
     actions
   end
 
- #商品編集の編集欄
-  form do |f|
-      f.inputs "Item" do
-        f.input :item_name
-        f.input :image
-        f.input :item_sieze
-        f.input :introduction
-        f.input :item_price
-        f.input :item_stock
+#商品編集の編集欄
+  form title: "新規登録 / 編集" do |f|
+      f.inputs "登録フォーム" do
+        f.input :item_name, label: "商品名"
+        f.input :item_sieze, label: "商品サイズ / セット数"
+        f.input :introduction, label: "商品ポイント"
+        f.input :item_price, label: "商品価格（単価 / 週）"
+        f.input :item_stock, label: "在庫数"
       end
       f.actions
   end
 
 #商品詳細で表示する内容
  show title: :item_name do |i|
-    attributes_table do
-      row :id
-      row :item_name
-      row :image do
+    attributes_table :title => "詳細情報" do
+      row "商品ID" do
+        resource.id
+      end
+      row "商品名" do
+        resource.item_name
+      end
+      row "商品画像" do
         image_tag(i.image.url)
       end
-      row :item_price
-      row :item_stock
-      row :item_sieze
-      row :introduction
-      row :created_at
-      row :updated_at
+      row "商品価格(単価 / 週)" do
+        resource.item_price
+      end
+      row "商品在庫" do
+        resource.item_stock
+      end
+      row "商品サイズ / セット" do
+        resource.item_sieze
+      end
+      row "商品ポイント" do
+        resource.introduction
+      end
+      row "登録日" do
+        resource.created_at
+      end
+      row "更新日" do
+        resource.updated_at
+      end
+      row " " do
+        link_to "商品一覧へ戻る",admin_items_path
+      end
     end
 end
 
