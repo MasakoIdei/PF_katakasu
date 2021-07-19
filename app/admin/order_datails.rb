@@ -1,6 +1,6 @@
 ActiveAdmin.register OrderDatail do
 
-  menu label: "商品レンタル状況"#タブ名の変更
+  menu label: "商品レンタル状況", priority: 0 #タブ名の変更
   config.per_page = 10 # 一覧ページの表示件数
   actions :all,  except:[:new, :create, :destroy, :edit]#actionボタンの内容制限
 
@@ -17,6 +17,10 @@ ActiveAdmin.register OrderDatail do
     column "商品名" do |order_detail|#商品詳細リンク
       #byebug
       link_to order_detail.item.item_name, admin_item_path( order_detail.item.id)
+    end
+    column "注文者" do |order_detail|
+      # byebug
+      link_to order_detail.order.customer.name, admin_customer_path(order_detail.order.customer_id)
     end
     column "貸出個数", :quantity
     column "レンタルの有無", :is_rental

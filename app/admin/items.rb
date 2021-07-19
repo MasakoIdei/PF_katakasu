@@ -1,6 +1,6 @@
 ActiveAdmin.register Item do
 
-  menu label: "商品一覧"#タブ名の変更
+  menu label: "商品一覧", priority: 2#タブ名の変更
   config.per_page = 5 # 一覧ページの表示件数
   permit_params :item_name, :image, :item_sieze, :introduction, :item_price, :item_stock
 

@@ -1,11 +1,11 @@
 ActiveAdmin.register Customer do
 
   permit_params :name, :email, :telephone_number, :is_active, :postal_code, :address
-  # 一覧ページのページングの件数
-  config.per_page = 10
-  # actionボタンに新規作成と削除を表示しないように設定
-  actions :all, except: [:new, :create, :destroy]
-   menu label: "会員一覧"
+
+  menu label: "会員一覧", priority: 3
+  config.per_page = 10# 一覧ページのページングの件数
+  actions :all, except: [:new, :create, :destroy] # actionボタンに新規作成と削除を表示しないように設定
+
 
   # 会員一覧画面
   index :title => "会員一覧" do
@@ -38,31 +38,34 @@ ActiveAdmin.register Customer do
  show title: :name do
     attributes_table :title =>"会員情報" do
       row "会員ID" do
-        :id
+        resource.id
       end
       row "会員氏名" do
-        :name
+        resource.name
       end
       row "メールアドレス" do
-        :email
+        resource.email
       end
       row "電話番号" do
-        :telephone_number
+        resource.telephone_number
       end
       row "郵便番号"  do
-        :postal_code
+        resource.postal_code
       end
       row "住所" do
-        :address
+        resource.address
       end
-      row "有効 / 無効" do
-        :is_active
+      row "会員ステータス" do |customer|
+        customer.is_active ? "登録中の会員です" : "この会員は既に退会しています"
       end
+      # row "有効 / 無効" do
+      #   resource.is_active
+      # end
       row "登録日" do
-        :created_at
+        resource.created_at
       end
       row "更新日" do
-        :updated_at
+        resource.updated_at
       end
     end
 end
