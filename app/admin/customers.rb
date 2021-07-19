@@ -22,30 +22,48 @@ ActiveAdmin.register Customer do
   end
 
   #edit画面
-  form do |f|
-      f.inputs "Customer" do
-        f.input :name
-        f.input :email
-        f.input :telephone_number
-        f.input :postal_code
-        f.input :address
-        f.input :is_active
+  form title: "会員情報編集" do |f|
+      f.inputs "編集フォーム" do
+        f.input :name, label: "会員氏名"
+        f.input :email, label: "メールアドレス"
+        f.input :telephone_number, label: "電話番号"
+        f.input :postal_code, label: "郵便番号"
+        f.input :address, label: "住所"
+        f.input :is_active, label: "有効"
       end
       f.actions
   end
 
   #会員詳細で表示する内容
  show title: :name do
-    attributes_table do
-      row :id
-      row :name
-      row :email
-      row :telephone_number
-      row :postal_code
-      row :address
-      row :is_active
-      row :created_at
-      row :updated_at
+    attributes_table :title =>"会員情報" do
+      row "会員ID" do
+        :id
+      end
+      row "会員氏名" do
+        :name
+      end
+      row "メールアドレス" do
+        :email
+      end
+      row "電話番号" do
+        :telephone_number
+      end
+      row "郵便番号"  do
+        :postal_code
+      end
+      row "住所" do
+        :address
+      end
+      row "有効 / 無効" do
+        :is_active
+      end
+      row "登録日" do
+        :created_at
+      end
+      row "更新日" do
+        :updated_at
+      end
     end
 end
 
