@@ -1,6 +1,15 @@
 class Item < ApplicationRecord
 mount_uploader :image, ImageUploader
 
-#カートアソシエーション
-has_many :cart_items, dependent: :destroy
+    #アソシエーション
+    has_many :cart_items, dependent: :destroy
+    has_many :order_datails
+    #バリデーション
+    with_options presence: true do
+      validates :item_name
+      validates :item_sieze
+      validates :introduction
+      validates :item_price
+      validates :item_stock
+    end
 end

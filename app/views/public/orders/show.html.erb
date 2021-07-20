@@ -1,3 +1,58 @@
 <div class= "container">
     <h2 class= "page_title">注文詳細</h2>
+
+    <div class="mx-auto" style="width: 70%;">
+      <!---注文商品内容の表示-------------------------------------------->
+        <table class="table  table-light">
+          <thead>
+            <tr>
+              <th>商品内容　<span class = "ml-3"> 注文日： <%= @order.created_at.strftime("%Y/%m/%d") %></span></th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sub_total = 0 %>
+            <% @order_datails.each do |order| %>
+              <tr>
+                <td>
+                  <%= image_tag (order.item.image.to_s), size: '80x80' %>
+                  <%= order.item.item_name %>
+                </td>
+                <td>
+                  <%= order.item.item_price %>円/週  X  <%= order.quantity %>セット
+                </td>
+                  <% @price = (order.item.item_price * order.quantity) %>
+                  <% @sub_total += @price %>
+              </tr>
+            <% end %>
+            　<tr style="border-top: 2px solid #CCC;">
+            　 　 <th>商品合計金額</th>
+            　 　 <td><%= @sub_total %>円</td>
+              </tr>
+          </tbody>
+        </table>
+
+          <!---支払い選択/期間選択の表示-------------------------------------------->
+        <table class="table  table-light  h-50">
+          <thead>
+            <tr>
+              <th>レンタル期間</th>
+              <th>支払い方法</th>
+              <th>送料</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @order.time_select %>週間</td>
+              <td><%= @order.pay_method %></td>
+              <td>一律　500円</td>
+              </tr>
+          </tbody>
+        </table>
+          <!---請求金額合計-------------------------------------------->
+        <div class="p-3 mb-3" style="background-color:#fff;">
+            <strong><p>請求額合計</p></strong>
+            <p><%= @order.total_price %>円</p>
+        </div>
+    </div>
 </div><!--conteiner-->

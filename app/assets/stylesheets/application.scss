@@ -17,15 +17,49 @@
 // bootstrapの読み込み
 @import "bootstrap";
 
+// ヘッダーあいさつ
+.welcome {
+  color: #FFF;
+  padding: 0.5em;
+  margin-right: 30px;
+}
+
 // ページタイトルの位置調整
 .page_title {
-  width: 200px;
+  width: 250px;
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+
 // 背景カラーの指定
 body {
   background-color: #E4FDFC;
 }
 
+// form_withのsubmit_bottom用のcss
+input[type="submit"]{
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  text-decoration: none;
+  color: #28a745;
+  border: solid 1px #28a745;
+  border-radius: 0.25rem;
+  transition: .4s;
+  background-color:rgba(0,0,0,0);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+input[type="submit"]:hover {
+   /* マウスが載ったとき */
+  background: #28a745;
+  color: white;
+}
+a:link, a:visited {
+    color: #009688;
+}
+// input[type="submit"]:active {
+//   /* クリックされたとき */
+// }

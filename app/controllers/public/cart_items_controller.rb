@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+ before_action :authenticate_customer!
 
    #商品詳細から送られてきたデータの受け取りと保存
   def create
