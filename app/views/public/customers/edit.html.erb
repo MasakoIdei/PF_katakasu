@@ -1,5 +1,8 @@
 <div class= "container">
     <h2 class= "page_title">マイページ編集</h2>
+    <!--エラーメッセージ表示-->
+    <%= render 'public/error.msg', object: @customer %>
+
 
   <div class="mt-5" style="width:100%;">
     <%= form_with model:@customer,local:true do |f| %>

@@ -4,6 +4,7 @@ class Public::CustomersController < ApplicationController
 #会員マイページ
   def show
     @customer = Customer.find(params[:id])
+    @request = Request.new
   end
 
 #会員情報の編集
