@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     put 'customers/:id/withdrawal' =>  'customers#withdrawal', as: 'customers_withdrawal'
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
+     resources :requests, only: [:create]
     post 'order/comfirm' => 'orders#comfirm'
     get 'order/thanks' => 'orders#thanks'
     put 'order/:id/item_return' => 'orders#item_return', as: 'item_return'

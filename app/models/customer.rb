@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   #アソシエーション
    has_many :cart_items, dependent: :destroy
    has_many :orders
+   has_many :requests, dependent: :destroy
 
    #バリデーション
   with_options presence: true do

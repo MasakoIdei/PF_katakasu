@@ -31,4 +31,7 @@
       <p><%= link_to "注文履歴を確認する",  orders_path, class: "btn btn-outline-primary" %></p>
     </div>
 
+　　<!--リクエストの送信-->
+    <%= render 'public/requests/new_requests', request: @request %>
+
 </div><!--conteiner-->
