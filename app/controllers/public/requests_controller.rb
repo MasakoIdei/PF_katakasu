@@ -7,6 +7,9 @@ class Public:: RequestsController < ApplicationController
     if @request.save
       flash[:notice] = "リクエストを送信しました。"
       redirect_back(fallback_location:root_path)
+    else
+      flash[:alert] = "送信に失敗しました。"
+      redirect_back(fallback_location:root_path)
     end
   end
 
