@@ -26,7 +26,7 @@ class Public::OrdersController < ApplicationController
         )
     end
 
-    if @order .save                                    #orderの保存が上手く行った場合
+    if @order.save                                    #orderの保存が上手く行った場合
     current_customer.cart_items.each do |cart_item|    #カートアイテムの情報を分割
       item = Item.find(cart_item.item_id)              #注文個数の情報を探してくる
       item_stock = item.item_stock - cart_item.quantity#在庫-注文個数

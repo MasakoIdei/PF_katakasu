@@ -8,6 +8,15 @@ class Customer < ApplicationRecord
    has_many :cart_items, dependent: :destroy
    has_many :orders
 
+   #バリデーション
+  with_options presence: true do
+    validates :name
+    validates :email
+    validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :postal_code, format: { with: /\A\d{7}\z/ }
+    validates :address
+  end
+
   #退会済みの場合は、ログインできない
   def active_for_authentication?
     super && self.is_active == true
