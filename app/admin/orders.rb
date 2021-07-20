@@ -5,6 +5,8 @@ ActiveAdmin.register Order do
   actions :all, except: [:new, :create, :destroy,:edit] # actionボタンに新規作成と削除を表示しないように設定
 
 #検索フィルターの検索項目
+filter :id, label: '注文ID'
+filter :created_at, label: '注文日'
 
 
 #一覧表示の表示内容
