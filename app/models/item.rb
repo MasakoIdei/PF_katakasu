@@ -7,6 +7,7 @@ mount_uploader :image, ImageUploader
     #バリデーション
     with_options presence: true do
       validates :item_name
+      validates :image
       validates :item_sieze
       validates :introduction
       validates :item_price
