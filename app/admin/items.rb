@@ -31,6 +31,7 @@ ActiveAdmin.register Item do
   form title: "新規登録 / 編集" do |f|
       f.inputs "登録フォーム" do
         f.input :item_name, label: "商品名"
+        f.input :image,label: "商品画像"
         f.input :item_sieze, label: "商品サイズ / セット数"
         f.input :introduction, label: "商品ポイント"
         f.input :item_price, label: "商品価格（単価 / 週）"
@@ -40,7 +41,7 @@ ActiveAdmin.register Item do
   end
 
 #商品詳細で表示する内容
- show title: :item_name do |i|
+ show title: :item_name do
     attributes_table :title => "詳細情報" do
       row "商品ID" do
         resource.id
@@ -48,7 +49,7 @@ ActiveAdmin.register Item do
       row "商品名" do
         resource.item_name
       end
-      row "商品画像" do
+      row :image do |i|
         image_tag(i.image.url)
       end
       row "商品価格(単価 / 週)" do
