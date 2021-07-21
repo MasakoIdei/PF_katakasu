@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
     current_customer.cart_items.each do |cart_item|
       @order.order_datails.build(
         item_id: cart_item.item_id,
-        quantity: cart_item.item.quantity,
+        quantity: cart_item.quantity,
         price: cart_item.item.item_price,
         is_rental: true,
         )
