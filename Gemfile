@@ -82,3 +82,6 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+# エラーメッセージレイアウト
+gem 'toastr-rails'

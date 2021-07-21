@@ -10,12 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require toastr
  *= require_tree .
  *= require_self
  */
 
+
 // bootstrapの読み込み
 @import "bootstrap";
+@import "toastr";
 
 // ヘッダーあいさつ
 .welcome {
@@ -63,3 +66,4 @@ a:link, a:visited {
 // input[type="submit"]:active {
 //   /* クリックされたとき */
 // }
+
