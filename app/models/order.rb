@@ -8,7 +8,6 @@ class Order < ApplicationRecord
 
   #バリデーション
   with_options presence: true do
-    validates :quantity
     validates :total_price
   end
 

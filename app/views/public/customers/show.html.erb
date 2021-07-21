@@ -1,8 +1,8 @@
 <div class= "container">
     <h2 class= "page_title">マイページ</h2>
 
-
-    <table class="table table-bordered">
+  <div class="row">
+    <table class="table table-bordered col-6 offset-1">
 
         <tr>
           <th>お名前</th>
@@ -26,13 +26,13 @@
         </tr>
     </table>
 
-    <div>
+    <div class="col-5">
       <p><%= link_to "会員情報を編集する",edit_customer_path(@customer.id), class: "btn btn-outline-success" %></p>
       <!--<p>%= link_to "お気に入り一覧をみる" %></p>-->
       <p><%= link_to "注文履歴を確認する",  orders_path, class: "btn btn-outline-primary" %></p>
     </div>
-
-　　<!--リクエストの送信-->
+  </div>
+    <!--リクエストの送信-->
     <%= render 'public/requests/new_requests', request: @request %>
 
 </div><!--conteiner-->

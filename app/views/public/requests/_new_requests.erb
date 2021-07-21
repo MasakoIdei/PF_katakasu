@@ -1,4 +1,4 @@
-<div>
+<div class= "col-6 offset-1 mt-3">
   <%= form_with model: request, ulr: requests_path, local: true do |f| %>
     <%= f.text_area :request,class: 'form-control' ,placeholder: "リクエスト入力欄" %><br>
     <%= f.submit "送信" %>
