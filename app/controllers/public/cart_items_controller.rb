@@ -58,7 +58,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
     @cart_item.quantity = params[:cart_item][:id]
     @cart_item.update(cart_item_params)
-    flash[:success] = '個数を変更しました'
+    flash[:notice] = '個数を変更しました'
     redirect_back(fallback_location: root_path)
   end
 
