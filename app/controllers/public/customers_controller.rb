@@ -16,7 +16,8 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to my_page_path, notice: '会員情報の更新が完了しました。'
+       flash[:notice] = '会員情報の更新が完了しました。'
+      redirect_to my_page_path
     else
       render "edit"
     end
@@ -26,7 +27,8 @@ class Public::CustomersController < ApplicationController
   def withdrawal
     @customer = Customer.find(params[:id])
     @customer.update(is_active: false)
-    reset_session　#削除後はログアウトしてTOP画面へ
+    #削除後はログアウトしてTOP画面へ
+    reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
