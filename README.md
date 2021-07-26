@@ -84,6 +84,6 @@ https://docs.google.com/spreadsheets/d/1KC_-gfnQr9A25r1cybOhicWlJaSNss6f-vj5g8YT
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材（使用予定）
-###フリー画像サイト
-- [O-DAN](https://o-dan.net/ja/)
+## 使用素材
+
+- フリー画像サイト [O-DAN](https://o-dan.net/ja/)
