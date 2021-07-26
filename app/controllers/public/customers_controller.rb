@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer
 
 #会員マイページ
   def show
@@ -33,9 +34,19 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+#直打ち禁止
+  def correct_customer
+   @customer = Customer.find(params[:id])
+   unless @customer.id == current_customer.id
+     redirect_to root_path
+   end
+  end
+
   private
    def customer_params
       params.require(:customer).permit(:name, :email, :postal_code, :address, :telephone_number, :is_active)
    end
+
+
 
 end
