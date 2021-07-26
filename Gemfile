@@ -85,3 +85,5 @@ end
 
 # エラーメッセージレイアウト
 gem 'toastr-rails'
+
+gem 'ransack'
