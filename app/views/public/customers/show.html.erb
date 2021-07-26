@@ -29,7 +29,10 @@
     <div class="col-5">
       <p><%= link_to "会員情報を編集する",edit_customer_path(@customer.id), class: "btn btn-outline-success" %></p>
       <!--<p>%= link_to "お気に入り一覧をみる" %></p>-->
-      <p><%= link_to "注文履歴を確認する",  orders_path, class: "btn btn-outline-primary" %></p>
+      <p>
+        <%= link_to "注文履歴を確認する",  orders_path, class: "btn btn-outline-primary" %><br>
+        <small>※商品のご返却は注文履歴からお願いいたします。</small>
+      </p>
     </div>
   </div>
     <!--リクエストの送信-->
