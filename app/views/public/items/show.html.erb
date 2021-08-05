@@ -7,15 +7,7 @@
      <div class="col-sm-12 col-md-12 col-lg-6">
        <%= image_tag (@item.image.to_s) %>
         <div class="bookmark">
-          <% if @item.bookmarked_by?(current_customer) %>
-            <%= link_to item_bookmarks_path(@item),method: :delete do %>
-             <i class= "fas fa-star on-star"></i>
-            <% end %>
-          <% else %>
-            <%= link_to item_bookmarks_path(@item), method: :post do %>
-             <i class= "far fa-star off-star"></i>
-            <% end %>
-          <% end %>
+          <%= render "public/bookmarks/star", item: @item %>
         </div>
      </div>
 
