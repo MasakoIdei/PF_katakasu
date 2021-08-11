@@ -21,7 +21,22 @@
   border-radius: 10px;
 }
 
+// お気に入りマークレイアウト
 .off-star, .on-star {
   color: #FFD400;
   font-size : 3em;
+}
+
+.bookmark_item {
+  position: relative;
+}
+
+.bookmark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 80%;
+  left: 80%;
 }

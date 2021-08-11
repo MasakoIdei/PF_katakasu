@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show] do
      resource :bookmarks, only: [:create, :destroy]
     end
+    get 'bookmarks' => 'bookmarks#index'
     resources :customers,only: [:edit,:update]
     get 'customers/:id/my_page' => 'customers#show', as: 'my_page'
     get 'customers/:id' => 'customers#show'

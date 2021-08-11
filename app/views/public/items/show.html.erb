@@ -4,7 +4,7 @@
 
    <div class="row">
      <!--画像の表示-->
-     <div class="col-sm-12 col-md-12 col-lg-6">
+     <div class="col-sm-12 col-md-12 col-lg-6 bookmark_item">
        <%= image_tag (@item.image.to_s) %>
         <div class="bookmark">
           <%= render "public/bookmarks/star", item: @item %>
