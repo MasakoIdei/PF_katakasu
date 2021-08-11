@@ -29,7 +29,9 @@ class Public::BookmarksController < ApplicationController
 
   #お気に入り一覧
   def index
-     @items = current_customer.bookmarks.includes(:customer).order(created_at: :desc)
+    #カレントユーザーのお気に入り情報を全部取得したい
+    @customer = current_customer
+    @bookmarks = Bookmark.where(customer_id: @customer.id).all
   end
 
 end
