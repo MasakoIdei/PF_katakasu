@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
    has_many :cart_items, dependent: :destroy
    has_many :orders
    has_many :requests, dependent: :destroy
+   has_many :bookmarks, dependent: :destroy
 
    #バリデーション
   with_options presence: true do

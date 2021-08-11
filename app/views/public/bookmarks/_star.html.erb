@@ -1,0 +1,15 @@
+<% if customer_signed_in? %>
+  <% if item.bookmarked_by?(current_customer) %>
+
+        <%= link_to item_bookmarks_path(item),method: :delete do %>
+          <i class= "fas fa-star on-star"></i>
+        <% end %>
+
+  <% else %>
+
+        <%= link_to item_bookmarks_path(item), method: :post do %>
+          <i class= "far fa-star off-star"></i>
+        <% end %>
+
+  <% end %>
+<% end %>
