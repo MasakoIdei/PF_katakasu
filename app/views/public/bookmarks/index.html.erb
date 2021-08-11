@@ -1,0 +1,44 @@
+<div class = "container">
+  <h2 class= "page_title">お気に入り一覧</h2>
+
+    <div class = "row">
+    <div class="card-deck">
+
+      <% if @bookmarks.present? %>
+        <% @bookmarks.each do |bookmark| %>
+          <div class="col-lg-3 .col-sm-6 my-2">
+            <div class="card h-100">
+
+                <!--画像、商品名/商品詳細リンク-->
+                <%= link_to item_path(bookmark) do %>
+                    <div class="img_wrap bookmark_item">
+                      <%= image_tag bookmark.item.image.to_s,:size =>'220X180' %>
+                      <div class="bookmark">
+                        <%= render "public/bookmarks/star", item: bookmark.item %>
+                      </div>
+                    </div>
+                    <h5 class="card-title"><%= bookmark.item.item_name %></h5>
+                <% end %>
+                <!--その他項目-->
+                <div class="card-body">
+                    <p>サイズ：<%= bookmark.item.item_sieze %></p>
+                    <p class="card-text">7日間 <%= bookmark.item.item_price %>円～</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">残り<%= bookmark.item.item_stock %>セット</small>
+                </div>
+
+            </div>
+          </div>
+        <% end %><!--eachの閉じタグ-->
+      <% end %>
+
+
+
+     <!-------------------------------------------------------------------------------------->
+
+    </div><!--card-deck-->
+  </div><!--row-->
+
+
+</div><!--container-->

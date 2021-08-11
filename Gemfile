@@ -71,6 +71,9 @@ gem 'devise'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 
+#アイコン
+gem 'font-awesome-sass', '~> 5.13'
+
 #画像アップロードに使用
 gem 'carrierwave'
 
@@ -86,4 +89,5 @@ end
 # エラーメッセージレイアウト
 gem 'toastr-rails'
 
+#検索機能
 gem 'ransack'

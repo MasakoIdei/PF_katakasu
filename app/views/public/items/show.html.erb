@@ -1,22 +1,26 @@
 <div class= "container">
     <h2 class= "page_title">商品詳細</h2>
-  　<p class="mb-3"><%=link_to "商品一覧へ戻る",items_path,class:"btn btn-outline-info" %></p>
+    <p class="mb-3"><%=link_to "商品一覧へ戻る",items_path,class:"btn btn-outline-info" %></p>
 
    <div class="row">
      <!--画像の表示-->
-     <div class="col-sm-12 col-md-12 col-lg-6">
+     <div class="col-sm-12 col-md-12 col-lg-6 bookmark_item">
        <%= image_tag (@item.image.to_s) %>
+        <div class="bookmark">
+          <%= render "public/bookmarks/star", item: @item %>
+        </div>
      </div>
+
      <!--商品詳細説明欄-->
      <div class="card col-sm-12 col-md-12 col-lg-6" style="width: 18rem; height:36rem;">
           <div class="card-body">
             <h5 class="card-title"><%= @item.item_name %></h5>
             <h6 class="card-subtitle mb-2 text-muted">サイズ：<%= @item.item_sieze %></h6>
             <p class="card-text mt-3"><%= @item.introduction %></p>
-            <p>単価　<%= @item.item_price %>円（１セット/週）</p>
-            <p>残り　<%= @item.item_stock %>　セット</p>
+            <p>単価  <%= @item.item_price %>円（１セット/週）</p>
+            <p>残り  <%= @item.item_stock %>  セット</p>
 
-  　　   　　  <!--在庫が０なら、メッセージ。そうでない場合は、個数選択欄とカートボタンを表示---->
+            <!--在庫が０なら、メッセージ。そうでない場合は、個数選択欄とカートボタンを表示---->
             <% if @item.item_stock == 0 %>
               <div class="out_stock">
                 <p>申し訳ございません。</p>

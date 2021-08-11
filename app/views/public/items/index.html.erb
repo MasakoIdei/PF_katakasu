@@ -23,7 +23,12 @@
 
                 <!--画像、商品名/商品詳細リンク-->
                 <%= link_to item_path(result) do %>
-                    <div class="img_wrap"><%= image_tag result.image.to_s,:size =>'220X180' %></div>
+                    <div class="img_wrap bookmark_item">
+                      <%= image_tag result.image.to_s,:size =>'220X180' %>
+                      <div class="bookmark">
+                        <%= render "public/bookmarks/star", item: result %>
+                      </div>
+                    </div>
                     <h5 class="card-title"><%= result.item_name %></h5>
                 <% end %>
                 <!--その他項目-->

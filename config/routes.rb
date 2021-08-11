@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to => "homes#top"
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+     resource :bookmarks, only: [:create, :destroy]
+    end
+    get 'bookmarks' => 'bookmarks#index'
     resources :customers,only: [:edit,:update]
     get 'customers/:id/my_page' => 'customers#show', as: 'my_page'
     get 'customers/:id' => 'customers#show'
